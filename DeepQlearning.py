@@ -1,4 +1,4 @@
-
+# Deep q learning with memory replay and target network
 
 from keras import Sequential
 from keras import losses,optimizers
@@ -94,8 +94,6 @@ class DQNAgent():
 
         batch = self.memory.sample_minibatch(self.minibatch_size)
 
-        states, targets_f = [], []
-
         for s,action,reward,next_state,done in batch:
 
             target = self.model_network.predict(s)
@@ -155,7 +153,7 @@ if __name__ == "__main__":
             state = next_state
             if done:
                 agent.copy_paramters()
-                # print the score and break out of the loop
+                # print score
                 print("episode: {}/{}, score: {}"
                       .format(e, episodes, time_t))
                 break
